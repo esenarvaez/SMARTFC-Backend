@@ -7,14 +7,8 @@ mongoose.set('useUnifiedTopology', true);
 
 const reviewSchema = mongoose.Schema(
     {
-      name: { type: String, required: true },
       rating: { type: Number, required: true },
-      comment: { type: String, required: true },
-      user: {
-       type: mongoose.Schema.Types.ObjectId,
-       required: true,
-       ref: 'User',
-             },
+      contenido_id:{type:Number, requerid: true}
      },
     {
       timestamps: true,
@@ -338,17 +332,7 @@ const activitySchema = new Schema({
         required: true,
         trim: true
     },
-    reviews: [reviewSchema],
-    rating: {
-        type: Number,
-        required: false,
-        default: 0,
-    },
-      numReviews: {
-        type: Number,
-        required: false,
-        default: 0,
-    }
+    reviews: [reviewSchema]
 }, {timestamps: true});
 
 module.exports = activitySchema;
