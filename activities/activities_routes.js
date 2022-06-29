@@ -10,4 +10,5 @@ module.exports=(router)=> {
     router.post('/uploadSectionsActivity', Activities.uploadSectionsActivity);
     router.post('/deleteActivity', Activities.deleteActivity);
     router.post('/updateRatingActivity', Activities.updateRatingActivity);
+    router.post('/loadReviews', Activities.loadReviews);
 }

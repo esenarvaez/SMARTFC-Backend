@@ -246,7 +246,38 @@ exports.updateRatingActivity = async (req, res) => {
             activity.reviews.push(review)
         });
         await activity.save()
-        res.status(201).json({ message: 'Review added' }) 
+        res.status(201).json({ message: 'Review added' })
+    } else {
+        res.status(404)
+        throw new Error('Product not found')
+
+    }
+}
+
+exports.loadReviews = async (req, res) => {
+    const { id_actividad } = req.body
+    const activity = await Activities.findById(id_actividad)
+    if (activity) {
+        const foundReview = activity.reviews;
+        const arrayReviewsSend = [];
+        revieSend = {
+            id_content: null,
+            id_reviews: null,
+            rating: null
+        }
+        for (let index = 0; index < foundReview.length; index++) {
+            revieSend = {};
+            const searchReviews = foundReview.filter(review => review.contenido_id == index + 1);
+            const numReviews = searchReviews.length;
+            const rating = searchReviews.reduce((acc, item) => item.rating + acc, 0) / numReviews;
+            revieSend.id_content = index + 1;
+            revieSend.id_reviews = numReviews;
+            revieSend.rating = rating;
+            arrayReviewsSend.push(revieSend);
+        }
+        res.status(200).json(
+            arrayReviewsSend
+        )
     } else {
         res.status(404)
         throw new Error('Product not found')
