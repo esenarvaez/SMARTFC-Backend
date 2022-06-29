@@ -272,7 +272,7 @@ exports.loadReviews = async (req, res) => {
             const rating = searchReviews.reduce((acc, item) => item.rating + acc, 0) / numReviews;
             revieSend.id_content = index + 1;
             revieSend.id_reviews = numReviews;
-            revieSend.rating = rating;
+            revieSend.rating = Math.round(rating);
             arrayReviewsSend.push(revieSend);
         }
         res.status(200).json(
