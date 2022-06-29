@@ -265,7 +265,7 @@ exports.loadReviews = async (req, res) => {
             id_reviews: null,
             rating: null
         }
-        for (let index = 0; index < foundReview.length; index++) {
+        for (let index = 0; index < 5; index++) {
             revieSend = {};
             const searchReviews = foundReview.filter(review => review.contenido_id == index + 1);
             const numReviews = searchReviews.length;
