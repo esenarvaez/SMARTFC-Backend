@@ -243,7 +243,7 @@ exports.updateRatingActivity = async (req, res) => {
                 contenido_id: Number(review.id_qalify),
                 rating: Number(review.defaultRating),
             }
-            activity.reviewsContenido.push(review)
+            activity.reviews.push(review)
         });
         await activity.save()
         res.status(201).json({ message: 'Review added' }) 
